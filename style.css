@@ -32,6 +32,7 @@ input:focus {
 }
 
 .pokemon-card {
+  position: relative;
   float: left;
   width: 250px;
   margin: auto;
@@ -44,6 +45,13 @@ input:focus {
   color: #2d72fc
 }
 
+/* .pokemon-hidden-frame {
+  width: 230px;
+  margin: 10px;
+  background: #fecd2f;
+  color: #2d72fc
+} */
+
 .pokemon-image {
   width: 96px;
   margin: auto;
@@ -55,4 +63,25 @@ input:focus {
 
 .flip-image {
   color: #2d72fc;
+}
+
+.overlay {
+  position: absolute; 
+  display: none; /* Hidden by default */
+  width: 230px; /* Full width (cover the whole page) */
+  height: 500px;
+  margin: 30px;
+  top: 25px; 
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:#2d72fc; /* Black background with opacity */
+  border: 3px solid #fecd2f;
+  color:  #fecd2f;
+  z-index: 1; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+
+.overlay-content{
+  margin: 40px;
 }
