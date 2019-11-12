@@ -1,116 +1,41 @@
-const DATA = ' http://localhost:3000/pokemon'
+
 
 document.addEventListener('DOMContentLoaded', () => {
-
-  const form = document.getElementById("pokemon-search-form")
-  const container = document.getElementById("pokemon-container")
-
-  function fetchPokemons(){
-    container.innerHTML = ''
-    fetch(DATA)
-    .then(resp => resp.json())
-    .then(json => json.forEach(renderPokemons))
+  
+  var context = document.querySelector("canvas").getContext("2d");
+  var balls = new Array();
+  let x = 300;
+  let y = 300;
+  for(let index = 0; index < 5; index ++) {
+    balls.push(new Ball(x, y, 15));
   }
+  function loop() {
+    let ballSprite = new Image()
+    ballSprite.src = "images/riceball.png"
 
-  function renderPokemons(pokemon){
-    const outerDiv = document.createElement("div")
-    outerDiv.className = "pokemon-card"
-
-    const h1 = document.createElement("div")
-    h1.innerText = `${pokemon.name}`
-    h1.dataset.action = 'stats'
-    h1.className = "center-text"
-    h1.dataset.id = `${pokemon.id}`
-    outerDiv.appendChild(h1)
-
-    const secondDiv = document.createElement("div")
-    secondDiv.className = "pokemon-frame"
-
-    const innerDiv = document.createElement("div")
-    innerDiv.className = "pokemon-image"
-
-    const img = document.createElement("img")
-    img.dataset.id = `${pokemon.id}`
-    img.dataset.action = "flip"
-    img.className = "toggle-sprite"
-    img.src = `${pokemon.sprites.front}`
-
-    innerDiv.appendChild(img)
-
-    secondDiv.appendChild(h1)
-    secondDiv.appendChild(innerDiv)
-
-    outerDiv.appendChild(secondDiv)
-    container.appendChild(outerDiv)
-
-  }
-
-
-  function updatePokemons(e) {
-    container.innerHTML = ''
-    fetch(DATA)
-    .then(resp => resp.json())
-    .then(function(json){
-      json.forEach(function(pokemon){
-        if (pokemon.name.includes(e.target.value)){
-        renderPokemons(pokemon)
-        } 
-      })
-    })
-  }
-
-  function turnAroundAndStats(e) {
-    if (e.target.dataset.action === 'flip') {
-      fetch(DATA)
-      .then(resp => resp.json())
-      .then(function(json){
-        json.forEach(function(pokemon){
-          if(pokemon.id === parseInt(e.target.dataset.id)){
-            if (e.target.src === pokemon.sprites.front) {
-              e.target.src = pokemon.sprites.back
-            } else {
-              e.target.src = pokemon.sprites.front
-            }
-          }
-        })
-      })
+    let ourJeffSprite = new Image()
+    ourJeffSprite.src = "images/jeff.png"
+    
+    window.requestAnimationFrame(loop);
+    let height = 600;
+    let width  = 600;
+    context.canvas.height = height;
+    context.canvas.width = width;
+    /* I removed that - 1 after making the video. It's not neccessary. */
+    for(let index = 0; index < balls.length; index ++) {
+      let ball = balls[index];
+      context.fillStyle = "rgba(0, 0, 0, 0)";
+      context.beginPath();
+      context.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+      context.fill()
+      context.drawImage(ballSprite, ball.x, ball.y, 40, 40);
+      ball.updatePosition(width, height);
     }
-    if (e.target.dataset.action === 'stats') {
-      fetch(DATA)
-      .then(resp => resp.json())
-      .then(function(json){
-        json.forEach(function(pokemon){
-          if(pokemon.id === parseInt(e.target.dataset.id)){
-            abilities = ''
-            pokemon.abilities.forEach(function(ability){
-              abilities += ` ${ability}`
-            })
-            moves = ''
-            pokemon.moves.forEach(function(move){
-              moves += ` ${move}`
-            })
-            stats = ''
-            pokemon.stats.forEach(function(stat){
-              stats += `${stat.name}: ${stat.value}\t`
-            })
-            types = ''
-            pokemon.types.forEach(function(type){
-              types += ` ${type}`
-            })
-            window.alert(`${pokemon.name}'s stats:\n
-                          height: ${pokemon.height}\n
-                          weight: ${pokemon.weight}\n
-                          abilities: ${abilities}\n
-                          moves: ${moves}\n
-                          stats:\n ${stats}\n
-                          types: ${types}`)
-          }
-        })
-      })
-    }
+    context.beginPath();
+    // context.arc(300, 300, ball.radius, 0, Math.PI * 2);
+    context.fill()
+    context.drawImage(ourJeffSprite, 250, 550, 100, 100);
   }
-
-  fetchPokemons()
-  form.addEventListener("input", updatePokemons)
-  container.addEventListener("click", turnAroundAndStats)
+  loop();
+  
 })

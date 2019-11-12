@@ -2,31 +2,30 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Find all the Pokemon</title>
+    <title>Hungry-hungry Jeffos!</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script type="text/javascript" src="src/pokemon.js"></script>
+    <script type="text/javascript" src="src/phaser.js"></script>
     <script type="text/javascript" src="src/index.js"></script>
+    <script type="text/javascript" src="src/ball.js"></script>
   </head>
   <body>
+    <div class="username-div">
+      <form id="form" class="" action="" method="">
+        <input id="username" type="text" name="" placeholder="Username..."><br>
+        <input id="initials" type="text" name="" placeholder="3 initials..."><br>
+      </form><br>
+      <div class="box">
+        <a href="#" class="btn btn-white btn-animation-1">Toggle Sound</a> 
+      </div><br>
+      <div class="box">
+        <a href="#" class="btn btn-white btn-animation-1">Personal Stats</a> 
+      </div><br>
+      <div class="box">
+        <a href="#" class="btn btn-white btn-animation-1">Leaderboard</a> 
+      </div><br>
+    </div>
     <div id="container">
-      <img id="pokemon-logo" src="images/pokemon.png" alt="">
-      <form id="pokemon-search-form" class="" action="" method="">
-        <input id="pokemon-search-input" type="text" name="">
-      </form>
-
-      <div id="pokemon-container">
-        <p><center>There are no Pokémon here</center></p>
-      </div>
+      <canvas></canvas>
     </div>
   </body>
 </html>
-
-
-<!-- <div class="pokemon-card">
-  <div class="pokemon-frame">
-    <h1 class="center-text">charizard</h1>
-    <div class="pokemon-image">
-      <img data-id="7" data-action="flip" class="toggle-sprite" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png">
-    </div>
-  </div>
-</div> -->

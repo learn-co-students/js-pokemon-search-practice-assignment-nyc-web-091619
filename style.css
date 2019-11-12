@@ -1,58 +1,109 @@
-body {
-  font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande',
-    sans-serif;
-  font-weight: 300;
-}
+* { margin:0; padding:0; }
+
 
 #container {
-  width: 1000px;
-  margin: auto;
-  margin-top: 50px;
+  position: absolute;
+  height: 600px;
+  width: 600px;
+  margin: 7vh;
+  background-color: darkgray;
+  border: 10px solid crimson;
 }
 
-#pokemon-search-form {
-  width: 500px;
-  margin: auto;
-  margin-top: 50px;
-}
-
-#pokemon-search-input {
-  font-size: 3rem;
-  border: 3px solid #fecd2f;
-  color: #2d72fc;
-}
-
-#pokemon-logo {
-  width: 300px;
-  margin-left: 330px;
-}
-
-input:focus {
-  outline: none;
-}
-
-.pokemon-card {
-  float: left;
-  width: 250px;
-  margin: auto;
-}
-
-.pokemon-frame {
-  width: 230px;
-  margin: 10px;
-  background: #fecd2f;
-  color: #2d72fc
-}
-
-.pokemon-image {
-  width: 96px;
-  margin: auto;
-}
-
-.center-text {
+input::placeholder {
   text-align: center;
 }
 
-.flip-image {
-  color: #2d72fc;
+.username-div {
+  margin-top: 7vh;
+  margin-right: 10vw;
+  position: absolute;
+  text-align: center;
+  line-height: 30px; 
+  right: 0px;
+  width: 300px;
+  height: 450px;
+  border: 3px solid darkgreen;
+}
+
+/* body{
+  background:lightblue;
+  text-align:center;
+  box-sizing:border-box;
+  font-family:"Lato",Sans-serif;
+/*   position:relative; */
+} */
+
+.box{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform : translate(-50% ,-50%);
+}
+
+.btn:link,
+.btn:visited{
+  text-decoration: none;
+  text-transform:uppercase;
+  position:relative;
+  top:0;
+  left:0;
+  padding:20px 40px;
+  border-radius:100px;
+  display:inline-block;
+  transition: all .5s;
+}
+
+.btn-white{
+  background:rgb(42, 218, 179);
+  color:#000;
+}
+
+.btn:hover{
+   box-shadow:0px 10px 10px rgba(214, 2, 2, 0.2);
+   transform : translateY(-3px);
+}
+
+.btn:active{
+  box-shadow:0px 5px 10px rgba(214, 2, 2, 0.2);
+  transform:translateY(-1px);
+}
+
+.btn-bottom-animation-1{
+  animation:comeFromBottom 1s ease-out .8s;
+}
+
+.btn::after{
+  content:"";
+  text-decoration: none;
+  text-transform:uppercase;
+  position:absolute;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  border-radius:100px;
+  display:inline-block;
+  z-index:-1;
+  transition: all .5s;
+}
+
+.btn-white::after {
+    background: #fff;
+}
+
+.btn-animation-1:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0;
+}
+
+@keyframes comeFromBottom{
+  0%{
+    opacity:0;
+    transform:translateY(40px);
+  } 
+  100%{
+    opacity:1;
+    transform:translateY(0);
+  }
 }
